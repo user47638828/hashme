@@ -1,3 +1,5 @@
+alert("access-control loaded");
+
 const seedInput = document.getElementById("seedInput");
 
 seedInput.addEventListener("keydown", async (event) => {
