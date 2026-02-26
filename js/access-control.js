@@ -1,10 +1,6 @@
-alert("access-control loaded");
-
 const seedInput = document.getElementById("seedInput");
 
-seedInput.addEventListener("keydown", async (event) => {
-  if (event.key !== "Enter") return;
-
+const attemptAccess = async () => {
   const seed = seedInput.value.trim();
   if (!seed) return;
 
@@ -17,4 +13,9 @@ seedInput.addEventListener("keydown", async (event) => {
   } else {
     document.body.innerHTML = "";
   }
+};
+
+seedInput.addEventListener("change", attemptAccess);
+seedInput.addEventListener("keydown", e => {
+  if (e.key === "Enter") attemptAccess();
 });
