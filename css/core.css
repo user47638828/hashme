@@ -28,3 +28,25 @@ input {
   width: 260px;
   outline: none;
 }
+
+.terminal {
+  padding: 40px;
+}
+
+.block {
+  margin-bottom: 28px;
+}
+
+.value {
+  font-size: 13px;
+  color: #cfcfcf;
+  word-break: break-all;
+}
+
+.muted .value {
+  opacity: 0.4;
+}
+
+.selectable {
+  user-select: text;
+}
