@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>terminal</title>
+  <link rel="stylesheet" href="css/core.css">
+</head>
+<body>
+
+<div class="terminal">
+
+  <div class="block">
+    <span class="label">identity fingerprint</span>
+    <div id="identityFingerprint" class="value"></div>
+  </div>
+
+  <div class="block">
+    <span class="label">connect key</span>
+    <div id="connectKey" class="value selectable"></div>
+  </div>
+
+  <div class="block muted">
+    <span class="label">sessions</span>
+    <div class="value">no active channels</div>
+  </div>
+
+</div>
+
+<script src="js/cryptography.js"></script>
+<script src="js/terminal-core.js"></script>
+</body>
+</html>
