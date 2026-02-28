@@ -1,3 +1,10 @@
-if(!G("i")) location.href="index.html";
-const el=document.getElementById("i");
-if(el) el.textContent=G("i");
+document.addEventListener("DOMContentLoaded",()=>{
+  const id = localStorage.getItem("i");
+  if(!id){
+    location.href="index.html";
+    return;
+  }
+
+  const el = document.getElementById("i");
+  if(el) el.textContent = id;
+});
