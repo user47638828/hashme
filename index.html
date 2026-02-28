@@ -7,14 +7,79 @@
 <meta http-equiv="Content-Security-Policy"
 content="default-src 'self'; script-src 'self' https://www.gstatic.com; style-src 'self'; connect-src https://firestore.googleapis.com https://www.googleapis.com; base-uri 'none'; frame-ancestors 'none'">
 <title>HashMe</title>
-<link rel="stylesheet" href="index.c3f9a.css">
+
+<style>
+html,body{
+  margin:0;
+  width:100%;
+  height:100%;
+  background:#000;
+  color:#0f0;
+  font-family:system-ui,monospace;
+  overflow:hidden;
+}
+
+#bg{
+  position:fixed;
+  inset:0;
+  z-index:0;
+}
+
+#wrap{
+  position:relative;
+  z-index:1;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+
+h1{
+  margin:0 0 20px 0;
+  font-size:32px;
+  letter-spacing:2px;
+}
+
+#l{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+input,button{
+  background:#000;
+  color:#0f0;
+  border:1px solid #0f0;
+  padding:12px;
+  width:240px;
+  font-size:16px;
+  border-radius:6px;
+}
+
+button{
+  margin-top:10px;
+  cursor:pointer;
+  touch-action:manipulation;
+}
+
+#s{
+  margin-top:12px;
+  height:18px;
+}
+</style>
 </head>
 <body>
 
-<div id="l">
-  <input id="k" placeholder="Key">
-  <button id="e">Enter</button>
-  <div id="s"></div>
+<canvas id="bg"></canvas>
+
+<div id="wrap">
+  <h1>HashMe</h1>
+  <div id="l">
+    <input id="k" placeholder="Key">
+    <button id="e">Enter</button>
+    <div id="s"></div>
+  </div>
 </div>
 
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
@@ -23,6 +88,45 @@ content="default-src 'self'; script-src 'self' https://www.gstatic.com; style-sr
 <script src="fz4fu6e4u7rerzu8.js"></script>
 <script src="q7c3e9a1.js"></script>
 <script src="a91f0c7e2.js"></script>
+
+<script>
+
+const c=document.getElementById("bg");
+const x=c.getContext("2d");
+let w,h,lines=[];
+
+function resize(){
+  w=c.width=window.innerWidth;
+  h=c.height=window.innerHeight;
+}
+window.onresize=resize;
+resize();
+
+for(let i=0;i<80;i++){
+  lines.push({
+    x:Math.random()*w,
+    y:Math.random()*h,
+    l:Math.random()*40+10,
+    s:Math.random()*0.5+0.2
+  });
+}
+
+function draw(){
+  x.clearRect(0,0,w,h);
+  x.strokeStyle="#0f0";
+  x.lineWidth=0.5;
+  lines.forEach(o=>{
+    x.beginPath();
+    x.moveTo(o.x,o.y);
+    x.lineTo(o.x+o.l,o.y);
+    x.stroke();
+    o.x+=o.s;
+    if(o.x> w) o.x=-o.l;
+  });
+  requestAnimationFrame(draw);
+}
+draw();
+</script>
 
 </body>
 </html>
