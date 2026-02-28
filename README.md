@@ -1,3 +1,3 @@
-                      HashMe
+                                HashMe
 --------------------------------------------------
-               Privacy Web Messenger 
+                         Privacy Web Messenger 
