@@ -1,6 +1,3 @@
-if(!localStorage.getItem("i")){
- location.href="index.html";
-}else{
- const el=document.getElementById("i");
- if(el)el.textContent=localStorage.getItem("i");
-}
+if(!G("i")) location.href="index.html";
+const el=document.getElementById("i");
+if(el) el.textContent=G("i");
