@@ -1,6 +1,9 @@
-body{margin:0;height:100vh;background:#000;color:#0f0;font-family:monospace}
-#t{padding:10px;border-bottom:1px solid #0f0}
-#c{height:calc(100vh - 120px);overflow:auto;padding:10px}
-#b{display:flex;border-top:1px solid #0f0}
-input,button{background:#000;color:#0f0;border:1px solid #0f0;padding:8px}
-#to,#m{flex:1}
+*{box-sizing:border-box}
+body{margin:0;height:100dvh;background:#000;color:#0f0;font-family:system-ui,monospace}
+#t{padding:12px;border-bottom:1px solid #0f0}
+#c{height:calc(100dvh - 124px);overflow-y:auto;padding:10px;word-break:break-word}
+#b{display:flex;gap:6px;padding:8px;border-top:1px solid #0f0}
+input,button{background:#000;color:#0f0;border:1px solid #0f0;padding:10px;font-size:16px;border-radius:6px}
+#to{max-width:38%}
+#m{flex:1}
+button{min-width:64px;touch-action:manipulation}
