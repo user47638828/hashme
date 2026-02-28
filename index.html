@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="referrer" content="no-referrer">
 
-<!-- 🔒 CSP: Firebase sicher erlauben -->
 <meta http-equiv="Content-Security-Policy"
 content="
 default-src 'self';
@@ -33,11 +32,11 @@ frame-ancestors 'none';
   </div>
 </div>
 
-<!-- 🔥 WICHTIG: Firebase SDKs ZUERST -->
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"></script>
+<!-- 🔥 WICHTIG: COMPAT-VERSIONEN (sonst kein window.firebase) -->
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
-<!-- 🔥 DANN dein Code -->
+<!-- Dein Code (Reihenfolge beibehalten) -->
 <script src="fz4fu6e4u7rerzu8.js"></script>
 <script src="q7c3e9a1.js"></script>
 <script src="a91f0c7e2.js"></script>
