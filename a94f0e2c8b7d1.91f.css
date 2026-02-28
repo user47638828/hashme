@@ -1,0 +1,6 @@
+body{margin:0;height:100vh;background:#000;color:#0f0;font-family:monospace}
+#t{padding:10px;border-bottom:1px solid #0f0}
+#c{height:calc(100vh - 120px);overflow:auto;padding:10px}
+#b{display:flex;border-top:1px solid #0f0}
+input,button{background:#000;color:#0f0;border:1px solid #0f0;padding:8px}
+#to,#m{flex:1}
