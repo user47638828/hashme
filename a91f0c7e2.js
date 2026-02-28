@@ -8,41 +8,66 @@ document.addEventListener("DOMContentLoaded",()=>{
     Sx.textContent="...";
 
     try{
+      // 1️⃣ Basis-Check
+      if(typeof firebase==="undefined") throw "firebase missing";
+      if(typeof D==="undefined") throw "firestore missing";
+
       const v=K.value.trim();
       if(v.length<10){
         Sx.textContent="x";
         return;
       }
 
+      // 2️⃣ TEMP-FIX: Klartext-Key
       const h=v;
 
-      const p=D.collection("keys").doc(h).get();
-      const d=await Promise.race([
-        p,
-        new Promise((_,r)=>setTimeout(()=>r("timeout"),8000))
-      ]);
+      // 3️⃣ Firestore Test
+      let d;
+      try{
+        d = await D.collection("keys").doc(h).get();
+      }catch(e){
+        throw "firestore get failed";
+      }
 
-      if(d==="timeout"){ Sx.textContent="net"; return; }
-      if(!d.exists){ Sx.textContent="x"; return; }
+      if(!d || !d.exists){
+        Sx.textContent="x";
+        return;
+      }
 
       const o=d.data();
-      if(Date.now()>o.v){ Sx.textContent="x"; return; }
+      if(!o || !o.i || !o.v){
+        throw "invalid key document";
+      }
 
-      S("i",o.i);
+      if(Date.now()>o.v){
+        Sx.textContent="x";
+        return;
+      }
 
-      if(!G("sk")){
+      // 4️⃣ Session setzen
+      localStorage.setItem("i",o.i);
+
+      // 5️⃣ Crypto init (optional, aber abgesichert)
+      if(!localStorage.getItem("sk")){
+        if(typeof C256==="undefined") throw "crypto missing";
+
         const kp=await C256.kp();
         const pub=await C256.exp(kp.publicKey);
         const prv=await crypto.subtle.exportKey("pkcs8",kp.privateKey);
-        S("sk",btoa(String.fromCharCode(...new Uint8Array(prv))));
+        localStorage.setItem("sk",
+          btoa(String.fromCharCode(...new Uint8Array(prv)))
+        );
+
         await D.collection("k").doc(o.i)
           .set({p:Array.from(new Uint8Array(pub))},{merge:true});
       }
 
+      // 6️⃣ Weiterleitung
       location.href="a94f0e2c8b7d1.html";
 
     }catch(e){
-      Sx.textContent="err";
+      // 🔥 JETZT siehst du den echten Fehler
+      Sx.textContent = String(e);
     }
   };
 
